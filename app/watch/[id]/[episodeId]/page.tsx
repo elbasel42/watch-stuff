@@ -1,12 +1,11 @@
-import { ANIME } from "@consumet/extensions";
 import { AppPlayer } from "@/app/components/AppPlayer";
 import "@vime/core/themes/default.css";
+import { AnimeProvider } from "@/app/lib/AnimeProvider";
 
 const EpisodePage = async ({ params }: { params: { episodeId: string } }) => {
-  const Zoro = new ANIME.Zoro();
   const { episodeId } = params;
   const validEpisodeId = episodeId.replaceAll("%24", "$");
-  const { sources } = await Zoro.fetchEpisodeSources(validEpisodeId);
+  const { sources } = await AnimeProvider.fetchEpisodeSources(validEpisodeId);
 
   return (
     <>

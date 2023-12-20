@@ -1,12 +1,11 @@
-import { ANIME } from "@consumet/extensions";
+import { AnimeProvider } from "@/app/lib/AnimeProvider";
 import Link from "next/link";
 
 const WatchPage = async ({ params }: { params: { id: string } }) => {
-  const Zoro = new ANIME.Zoro();
   const { id } = params;
   const {
     title,
-    malId,
+    malI,
     alId,
     image,
     description,
@@ -16,9 +15,9 @@ const WatchPage = async ({ params }: { params: { id: string } }) => {
     hasDub,
     totalEpisodes,
     episodes,
-  } = await Zoro.fetchAnimeInfo(id);
+  } = await AnimeProvider.fetchAnimeInfo(id);
 
-  console.log(episodes)
+  console.log(episodes);
 
   return (
     <main>
@@ -29,9 +28,9 @@ const WatchPage = async ({ params }: { params: { id: string } }) => {
       <ul>
         {episodes?.map(({ id: episodeId, number, isFiller, url }) => {
           return (
-          <Link href={`/watch/${id}/${episodeId}`}>
-          <div>Episode {number}</div>
-          </Link>
+            <Link href={`/watch/${id}/${episodeId}`}>
+              <div>Episode {number}</div>
+            </Link>
           );
         })}
       </ul>

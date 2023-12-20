@@ -1,13 +1,12 @@
 // "use client";
 
-import { ANIME } from "@consumet/extensions";
 import Link from "next/link";
+import { AnimeProvider } from "@/app/lib/AnimeProvider";
 
-const Zoro = new ANIME.Zoro();
 
 const Home = async () => {
   const { currentPage, hasNextPage, results } =
-    await Zoro.fetchRecentEpisodes();
+    await AnimeProvider.fetchRecentEpisodes();
 
   // const searchResults = Zoro.search('Faraway Paladin');
   return (
