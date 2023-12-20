@@ -1,4 +1,6 @@
 import { ANIME } from "@consumet/extensions";
+import { AppPlayer } from "@/app/components/AppPlayer";
+import "@vime/core/themes/default.css";
 
 const EpisodePage = async ({ params }: { params: { episodeId: string } }) => {
   const Zoro = new ANIME.Zoro();
@@ -16,6 +18,9 @@ const EpisodePage = async ({ params }: { params: { episodeId: string } }) => {
               <h2>URL: {url}</h2>
               <p>isM3U8: {isM3U8 ? "true" : "false"}</p>
               <p>isDASH: {isDASH ? "true" : "false"}</p>
+              <div>
+                <AppPlayer url={url}/>
+              </div>
             </div>
           );
         })}

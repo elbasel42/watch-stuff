@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@consumet/extensions": "^1.5.4",
+    "@vime/core": "^5.4.1",
+    "@vime/react": "^5.4.1",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
