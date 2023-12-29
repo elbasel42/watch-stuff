@@ -1,8 +1,7 @@
 import { AppPlayer } from "@/app/components/AppPlayer";
 import { AnimeProvider } from "@/app/lib/AnimeProvider";
-import "@vime/core/themes/default.css";
 
-const EpisodePage = async ({ params }: { params: { episodeId: string } }) => {
+const EpisodePage = async ({ params }: { params: { episodeId: string} }) => {
   const { episodeId } = params;
   const validEpisodeId = episodeId.replaceAll("%24", "$");
   const { sources, intro, outro, subtitles, download, embedURL } = await AnimeProvider.fetchEpisodeSources(validEpisodeId);

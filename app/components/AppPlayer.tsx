@@ -1,16 +1,14 @@
 "use client";
 
-import { createRef, useRef } from "react";
+import {  useRef } from "react";
 import ReactPlayer from "react-player";
 
-// import { Player, Hls, DefaultUi } from "@vime/react";
 
 interface Props {
   url: string;
   subtitleUrl?: string;
-  onEnded?: Function;
 }
-export const AppPlayer = ({ url, subtitleUrl }: Props) => {
+export const AppPlayer = ({ url, subtitleUrl = ""}: Props) => {
   const playerRef: any = useRef();
   return (
     <ReactPlayer url={url} ref={playerRef} controls 
