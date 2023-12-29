@@ -14,7 +14,8 @@
     "@vime/react": "^5.4.1",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-player": "^2.14.1"
   },
   "devDependencies": {
     "@types/node": "^20",
