@@ -15,7 +15,7 @@ export const Card = ({url, imageUrl, title}: Props) => {
             src={imageUrl}
             alt=""
             // width={320}
-            className="block object-cover w-full h-64"
+            className="block object-top object-cover w-full h-32 lg:h-64"
           />
           <h3 className="text-center">{title}</h3>
         </div>
