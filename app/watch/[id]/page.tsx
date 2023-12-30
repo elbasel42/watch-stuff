@@ -22,7 +22,7 @@ const WatchPage = async ({ params }: { params: { id: string } }) => {
   return (
     <main>
       <div className="flex gap-4 mb-8 rounded-3xl overflow-hidden">
-        <img src={image} alt=""/>
+        <img src={image} alt="" className="w-18"/>
         <div>
           <h1 className="text-3xl font-mono">{title.toString()}</h1>
           <p>{description}</p>
