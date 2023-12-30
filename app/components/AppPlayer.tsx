@@ -23,8 +23,7 @@ export const AppPlayer = ({ url, subtitles }: Props) => {
           },
           tracks: [
             // {kind: "subtitles", src: subtitleUrl ?? "", srcLang: "en", default: true, label: "English"}
-            ...subtitles.map((s: { url: string; lang: string }) => {
-              let def = false;
+            ...subtitles?.map((s: { url: string; lang: string }) => {
               let srcLang = "";
               if (s.lang === "Thumbnails") return;
               if (["en", "english"].includes(s.lang.toLowerCase())) {
