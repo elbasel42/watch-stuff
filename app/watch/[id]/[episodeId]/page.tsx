@@ -10,8 +10,8 @@ export const revalidate = 0;
 export const fetchCache = "force-no-store";
 
 const EpisodePage = ({ params }: { params: { episodeId: string } }) => {
-  const [episodeSources, setSources] = useState([]);
-  const [episodeSubtitles, setSubtitles] = useState([])
+  const [episodeSources, setSources] = useState<any>([]);
+  const [episodeSubtitles, setSubtitles] = useState<any>([]);
 
   const { episodeId } = params;
   const validEpisodeId = episodeId.replaceAll("%24", "$");
@@ -23,7 +23,7 @@ const EpisodePage = ({ params }: { params: { episodeId: string } }) => {
       episodeSources;
     console.log(sources);
     setSources(sources);
-    setSubtitles(subtitles)
+    setSubtitles(subtitles);
   };
 
   useEffect(() => {
@@ -37,22 +37,39 @@ const EpisodePage = ({ params }: { params: { episodeId: string } }) => {
     <>
       <h1>{validEpisodeId}</h1>
       <div>
-        {episodeSources.map(({ url, isM3U8, isDASH, quality, size }, index) => {
-          if (index > 0) return;
-          const proxyUrl = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${url}`;
-          console.log({ quality, size });
-          return (
-            <div className="border border-black">
-              <h2>URL: {url}</h2>
-              <p>isM3U8: {isM3U8 ? "true" : "false"}</p>
-              <p>isDASH: {isDASH ? "true" : "false"}</p>
-              <div className="flex justify-center">
-                {/* <AppPlayer url={proxyUrl} subtitles={subtitles} /> */}
-                <AppPlayer url={proxyUrl} subtitles={episodeSubtitles}/>
+        {episodeSources.map(
+          (
+            {
+              url,
+              isM3U8,
+              isDASH,
+              quality,
+              size,
+            }: {
+              url: string;
+              isM3U8: boolean;
+              isDASH: boolean;
+              size: number;
+              quality: string;
+            },
+            index: number
+          ) => {
+            if (index > 0) return;
+            const proxyUrl = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${url}`;
+            console.log({ quality, size });
+            return (
+              <div className="border border-black">
+                <h2>URL: {url}</h2>
+                <p>isM3U8: {isM3U8 ? "true" : "false"}</p>
+                <p>isDASH: {isDASH ? "true" : "false"}</p>
+                <div className="flex justify-center">
+                  {/* <AppPlayer url={proxyUrl} subtitles={subtitles} /> */}
+                  <AppPlayer url={proxyUrl} subtitles={episodeSubtitles} />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          }
+        )}
       </div>
     </>
   );

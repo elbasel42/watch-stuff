@@ -21,13 +21,19 @@ const SearchPage = async ({
         return (
           <div>
             <Link href={`watch/${s.id}`}>
-            <img src={s.image} alt="" width={320} height={320} className="w-28 object-cover"/>
-            <h2>{s.title.toString()}</h2>
-            {/* <p>{s.id}</p> */}
-            <p>{s.rating}</p>
-            <p>{s.releaseDate}</p>
-            <p>{s.status}</p>
-            <p>{s.type}</p>
+              <img
+                src={s.image}
+                alt=""
+                width={320}
+                height={320}
+                className="w-28 object-cover"
+              />
+              <h2>{s.title.toString()}</h2>
+              {/* <p>{s.id}</p> */}
+              <p>{s.rating}</p>
+              <p>{s.releaseDate}</p>
+              <p>{s.status}</p>
+              <p>{s.type}</p>
             </Link>
           </div>
         );
