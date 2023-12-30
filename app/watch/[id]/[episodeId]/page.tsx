@@ -2,12 +2,11 @@
 
 import { getEpisodeSources } from "@/app/actions/getEpisodeSources";
 import { AppPlayer } from "@/app/components/AppPlayer";
-import { AnimeProvider } from "@/app/lib/AnimeProvider";
 import { useEffect, useState } from "react";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-export const fetchCache = "force-no-store";
+// export const dynamic = "force-dynamic";
+// export const revalidate = 0;
+// export const fetchCache = "force-no-store";
 
 const EpisodePage = ({ params }: { params: { episodeId: string } }) => {
   const [episodeSources, setSources] = useState<any>([]);
@@ -21,7 +20,6 @@ const EpisodePage = ({ params }: { params: { episodeId: string } }) => {
 
     const { sources, intro, outro, subtitles, download, embedURL } =
       episodeSources;
-    console.log(sources);
     setSources(sources);
     setSubtitles(subtitles);
   };
