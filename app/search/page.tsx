@@ -1,6 +1,7 @@
 import { IAnimeResult, ISearch } from "@consumet/extensions";
 import { AnimeProvider } from "../lib/AnimeProvider";
-import Link from "next/link";
+import { CardsContainer } from "../components/CardsContainer";
+import { Card } from "../components/Card";
 
 const SearchPage = async ({
   searchParams,
@@ -16,29 +17,17 @@ const SearchPage = async ({
   console.log(searchResults);
   const resultList = [...results];
   return (
-    <div className="grid grid-cols-5 gap-5">
+    <CardsContainer>
       {resultList.map((s) => {
         return (
-          <div>
-            <Link href={`watch/${s.id}`}>
-              <img
-                src={s.image}
-                alt=""
-                width={320}
-                height={320}
-                className="w-28 object-cover"
-              />
-              <h2>{s.title.toString()}</h2>
-              {/* <p>{s.id}</p> */}
-              <p>{s.rating}</p>
-              <p>{s.releaseDate}</p>
-              <p>{s.status}</p>
-              <p>{s.type}</p>
-            </Link>
-          </div>
+          <Card
+            url={`/watch/${s.id}`}
+            imageUrl={s.image ?? ""}
+            title={s.title.toString()}
+          />
         );
       })}
-    </div>
+    </CardsContainer>
   );
 };
 
