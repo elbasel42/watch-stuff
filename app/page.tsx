@@ -1,9 +1,6 @@
 import { AnimeProvider } from "@/app/lib/AnimeProvider";
-import { IoMdSearch } from "react-icons/io";
 import { CardsContainer } from "./components/CardsContainer";
 import { Card } from "./components/Card";
-import { MdHomeFilled } from "react-icons/md";
-import Link from "next/link";
 
 const Home = async () => {
   const { currentPage, hasNextPage, results } =

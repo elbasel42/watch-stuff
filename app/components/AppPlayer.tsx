@@ -22,7 +22,6 @@ export const AppPlayer = ({ url, subtitles }: Props) => {
             crossOrigin: "anonymous",
           },
           tracks: [
-            // {kind: "subtitles", src: subtitleUrl ?? "", srcLang: "en", default: true, label: "English"}
             ...subtitles?.map((s: { url: string; lang: string }) => {
               let srcLang = "";
               if (s.lang === "Thumbnails") return;

@@ -4,6 +4,13 @@ import { getEpisodeSources } from "@/app/actions/getEpisodeSources";
 import { AppPlayer } from "@/app/components/AppPlayer";
 import { useEffect, useState } from "react";
 
+interface EpisodeSource {
+  url: string;
+  isM3U8: boolean;
+  isDASH: boolean;
+  size: number;
+  quality: string;
+}
 // export const dynamic = "force-dynamic";
 // export const revalidate = 0;
 // export const fetchCache = "force-no-store";
@@ -33,37 +40,17 @@ const EpisodePage = ({ params }: { params: { episodeId: string } }) => {
 
   return (
     <>
-      <h1>{validEpisodeId}</h1>
       <div>
         {episodeSources.map(
           (
-            {
-              url,
-              isM3U8,
-              isDASH,
-              quality,
-              size,
-            }: {
-              url: string;
-              isM3U8: boolean;
-              isDASH: boolean;
-              size: number;
-              quality: string;
-            },
+            { url, isM3U8, isDASH, quality, size }: EpisodeSource,
             index: number
           ) => {
             if (index > 0) return;
             const proxyUrl = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${url}`;
-            console.log({ quality, size });
             return (
-              <div className="border border-black">
-                <h2>URL: {url}</h2>
-                <p>isM3U8: {isM3U8 ? "true" : "false"}</p>
-                <p>isDASH: {isDASH ? "true" : "false"}</p>
-                <div className="flex justify-center">
-                  {/* <AppPlayer url={proxyUrl} subtitles={subtitles} /> */}
-                  <AppPlayer url={proxyUrl} subtitles={episodeSubtitles} />
-                </div>
+              <div className="flex justify-center">
+                <AppPlayer url={proxyUrl} subtitles={episodeSubtitles} />
               </div>
             );
           }
