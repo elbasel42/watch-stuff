@@ -1,21 +1,20 @@
 import { Card } from "@/app/components/Card";
 import { CardsContainer } from "@/app/components/CardsContainer";
 import { AnimeProvider } from "@/app/lib/AnimeProvider";
-import { IAnimeResult, ISearch } from "@consumet/extensions";
 
-const SearchPage = async ({
-  searchParams,
-}: {
-  searchParams: { query: string };
-}) => {
+interface SearchParams {
+  searchParams: {
+    query: string;
+  };
+}
+
+const SearchPage = async ({ searchParams }: SearchParams) => {
   const { query } = searchParams;
 
-  const searchResults: ISearch<IAnimeResult> = await AnimeProvider.search(
-    query
-  );
+  const searchResults = await AnimeProvider.search(query);
   const { currentPage, hasNextPage, totalPages, results } = searchResults;
-  console.log(searchResults);
   const resultList = [...results];
+
   return (
     <CardsContainer>
       {resultList.map((s) => {

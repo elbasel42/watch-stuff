@@ -1,7 +1,14 @@
+import { ReadMore } from "@/app/components/ReadMore";
 import { AnimeProvider } from "@/app/lib/AnimeProvider";
 import Link from "next/link";
 
-const WatchPage = async ({ params }: { params: { id: string } }) => {
+interface Props {
+  params: {
+    id: string;
+  };
+}
+
+const WatchPage = async ({ params }: Props) => {
   const { id } = params;
   const {
     title,
@@ -17,15 +24,13 @@ const WatchPage = async ({ params }: { params: { id: string } }) => {
     episodes,
   } = await AnimeProvider.fetchAnimeInfo(id);
 
-  console.log(episodes);
-
   return (
     <main>
-      <div className="flex flex-col md:flex-row gap-4 mb-8 rounded-3xl overflow-hidden">
-        <img src={image} alt="" className="flex-1" />
+      <div className="flex flex-col items-center justify-center gap-4 mb-8 overflow-hidden md:flex-row rounded-3xl">
+        <img src={image} alt="" className="object-cover object-top w-60 h-80" />
         <div>
-          <h1 className="text-3xl font-mono">{title.toString()}</h1>
-          <p>{description}</p>
+          <h1 className="font-mono text-3xl text-center">{title.toString()}</h1>
+          <ReadMore text={description ?? ""} className="px-4 py-2"/>
         </div>
       </div>
       <ul className="flex flex-wrap gap-2">
@@ -33,7 +38,7 @@ const WatchPage = async ({ params }: { params: { id: string } }) => {
           return (
             <Link
               href={`/watch/${id}/${index}`}
-              className="bg-slate-800 rounded-3xl px-4 py-2"
+              className="px-4 py-2 bg-slate-800 rounded-3xl"
             >
               <div>Episode {number}</div>
             </Link>

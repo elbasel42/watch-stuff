@@ -6,6 +6,7 @@ import { AppPlayer } from "@/app/components/AppPlayer";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaBackward, FaForward } from "react-icons/fa";
+import { twMerge } from "tailwind-merge";
 
 interface EpisodeSource {
   url: string;
@@ -26,8 +27,8 @@ const WatchEpisodePage = ({
 
   const [episodeSources, setSources] = useState<any>([]);
   const [episodeSubtitles, setSubtitles] = useState<any>([]);
-  const [episodeTitle, setEpisodeTitle] = useState("");
   const [animeTitle, setAnimeTitle] = useState("");
+  const [totalEpisodeNum, setTotalEpisodeNum] = useState(0);
 
   const loadEpisode = async () => {
     const {
@@ -55,7 +56,10 @@ const WatchEpisodePage = ({
       episodeSources;
     setSources(sources);
     setSubtitles(subtitles);
+    setTotalEpisodeNum(totalEpisodes ?? 0);
+    console.log({ intro, outro });
   };
+
 
   useEffect(() => {
     loadEpisode();
@@ -66,17 +70,19 @@ const WatchEpisodePage = ({
 
   return (
     <main>
-      <h1 className="text-3xl text-center font-mono">
-        {animeTitle} Episode {episodeNum + 1}
+      <h1 className="font-mono text-3xl text-center">
+        Episode {episodeNum + 1}
       </h1>
-      <div className="flex justify-center items-stretch gap-5">
+      <div className="flex">
         <button className="border border-white rounded-tl-3xl rounded-bl-3xl">
-          <Link
-            href={`/watch/${animeId}/${episodeNum - 1}`}
-            className="px-4 py-2 md:px-8 md:py-4 flex items-center justify-center"
-          >
-            <FaBackward />
-          </Link>
+          {episodeNum > 0 && (
+            <Link
+              href={`/watch/${animeId}/${episodeNum - 1}`}
+              className="flex items-center justify-center px-2 md:px-8 md:py-4"
+            >
+              <FaBackward />
+            </Link>
+          )}
         </button>
         <div className="flex-1 w-1/2">
           {episodeSources.map(
@@ -94,15 +100,25 @@ const WatchEpisodePage = ({
             }
           )}
         </div>
-        <button className="border border-white rounded-tr-3xl -rounded-br-3xl flex items-stretch">
-          <Link
-            href={`/watch/${animeId}/${episodeNum + 1}`}
-            className="px-4 py-2 md:px-8 md:py-4 flex items-center justify-center"
-          >
-            <FaForward />
-          </Link>
+        <button className="flex items-stretch border border-white rounded-tr-3xl rounded-br-3xl">
+          {episodeNum <= totalEpisodeNum && (
+            <Link
+              href={`/watch/${animeId}/${episodeNum + 1}`}
+              className="flex items-center justify-center px-2 md:px-8 md:py-4"
+            >
+              <FaForward />
+            </Link>
+          )}
         </button>
       </div>
+      <h2>
+        <Link
+          href={`/anime${animeId}`}
+          className="block text-2xl text-center text-blue-600"
+        >
+          {animeTitle}
+        </Link>
+      </h2>
     </main>
   );
 };
