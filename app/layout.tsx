@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import { Nav } from "./components/Nav";
@@ -17,6 +18,7 @@ const scrollbarClasses =
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
+      <SpeedInsights />
       <body
         className={twMerge(
           "bg-black px-2 py-4 overflow-x-hidden text-white",
