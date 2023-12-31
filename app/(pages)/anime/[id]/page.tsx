@@ -32,7 +32,7 @@ const WatchPage = async ({ params }: { params: { id: string } }) => {
         {episodes?.map(({ id: episodeId, number, isFiller, url }, index) => {
           return (
             <Link
-              href={`/watch/${id}/${episodeId}/${title}/${index}`}
+              href={`/watch/${id}/${index}`}
               className="bg-slate-800 rounded-3xl px-4 py-2"
             >
               <div>Episode {number}</div>
