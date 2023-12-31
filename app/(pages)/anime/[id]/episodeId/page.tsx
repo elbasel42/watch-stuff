@@ -24,7 +24,6 @@ const EpisodePage = ({ params }: { params: { episodeId: string } }) => {
 
   const loadEpisode = async () => {
     const episodeSources = await getEpisodeSources(validEpisodeId);
-
     const { sources, intro, outro, subtitles, download, embedURL } =
       episodeSources;
     setSources(sources);

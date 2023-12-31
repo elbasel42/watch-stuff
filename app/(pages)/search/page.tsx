@@ -1,7 +1,7 @@
+import { Card } from "@/app/components/Card";
+import { CardsContainer } from "@/app/components/CardsContainer";
+import { AnimeProvider } from "@/app/lib/AnimeProvider";
 import { IAnimeResult, ISearch } from "@consumet/extensions";
-import { AnimeProvider } from "../lib/AnimeProvider";
-import { CardsContainer } from "../components/CardsContainer";
-import { Card } from "../components/Card";
 
 const SearchPage = async ({
   searchParams,
@@ -21,7 +21,7 @@ const SearchPage = async ({
       {resultList.map((s) => {
         return (
           <Card
-            url={`/watch/${s.id}`}
+            url={`/anime/${s.id}`}
             imageUrl={s.image ?? ""}
             title={s.title.toString()}
           />

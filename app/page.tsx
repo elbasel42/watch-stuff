@@ -12,7 +12,7 @@ const Home = async () => {
         {results.map(({ id, image, title, url, episode }) => {
           return (
             <Card
-              url={`/watch/${id}`}
+              url={`/anime/${id}`}
               imageUrl={image ?? ""}
               title={title.toString()}
             />
