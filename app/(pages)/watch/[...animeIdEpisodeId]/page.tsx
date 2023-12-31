@@ -3,6 +3,7 @@
 import { getEpisodeSources } from "@/app/actions/getEpisodeSources";
 import { AppPlayer } from "@/app/components/AppPlayer";
 import { useEffect, useState } from "react";
+import { FaBackward, FaForward } from "react-icons/fa";
 
 interface EpisodeSource {
   url: string;
@@ -20,7 +21,8 @@ const WatchEpisodePage = ({
   const { animeIdEpisodeId } = params;
   const animeId = animeIdEpisodeId[0];
   const episodeId = animeIdEpisodeId[1];
-  const episodeNum = animeIdEpisodeId[2];
+  const title = animeIdEpisodeId[2];
+  const episodeNum = animeIdEpisodeId[3];
   const validEpisodeId = episodeId.replaceAll("%24", "$");
 
   const [episodeSources, setSources] = useState<any>([]);
@@ -43,23 +45,32 @@ const WatchEpisodePage = ({
 
   return (
     <main>
-      <h1>Episode {episodeNum}</h1>
-      <h2>{validEpisodeId}</h2>
-      <div>
-        {episodeSources.map(
-          (
-            { url, isM3U8, isDASH, quality, size }: EpisodeSource,
-            index: number
-          ) => {
-            if (index > 0) return;
-            const proxyUrl = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${url}`;
-            return (
-              <div className="flex justify-center">
-                <AppPlayer url={proxyUrl} subtitles={episodeSubtitles} />
-              </div>
-            );
-          }
-        )}
+      <h1 className="text-3xl text-center font-mono">
+        {title.replaceAll("%20", " ")} Episode {episodeNum + 1}
+      </h1>
+      <div className="flex justify-center items-stretch gap-5">
+        <button className="border border-white rounded-tl-3xl rounded-bl-3xl px-4 py-2 md:px-8 md:py-4">
+          <FaBackward />
+        </button>
+        <div className="flex-1 w-1/2">
+          {episodeSources.map(
+            (
+              { url, isM3U8, isDASH, quality, size }: EpisodeSource,
+              index: number
+            ) => {
+              if (index > 0) return;
+              const proxyUrl = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${url}`;
+              return (
+                <div className="flex justify-center">
+                  <AppPlayer url={proxyUrl} subtitles={episodeSubtitles} />
+                </div>
+              );
+            }
+          )}
+        </div>
+        <button className="border border-white rounded-tr-3xl -rounded-br-3xl px-4 py-2 md:px-8 md:py-4">
+          <FaForward />
+        </button>
       </div>
     </main>
   );
