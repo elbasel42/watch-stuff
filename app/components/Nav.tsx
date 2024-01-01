@@ -7,12 +7,14 @@ import { MdHomeFilled } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 
 export const Nav = () => {
-  let savedSearchTarget = "";
+
+  const [searchTarget, setSearchTarget] = useState("");
+
   useEffect(() => {
-    savedSearchTarget = localStorage.getItem("searchTarget") ?? "anime";
+    const savedSearchTarget = localStorage.getItem("searchTarget") ?? "anime";
+    setSearchTarget(savedSearchTarget)
   }, []);
 
-  const [searchTarget, setSearchTarget] = useState(savedSearchTarget);
   return (
     <nav className="flex gap-2 items-center mb-8">
       <Link href="/" className="flex items-center">
