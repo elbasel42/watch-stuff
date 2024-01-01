@@ -28,20 +28,18 @@ const MangaPage = async ({ params }: Props) => {
 
   return (
     <div>
-      {title.toString()}
       <img src={image} alt="" />
-      <p>{description?.toString()}</p>
-      {chapters?.toReversed().map(({ id: chapterId, title, pages, releaseDate, volume }) => {
-        // console.log({id, chapterId})
-        return (
-          <Link href={`/read/${id}/${chapterId}`}>
-            <h2>{title}</h2>
-            {/* <p>{pages} pages</p> */}
-            {/* <p>{releaseDate}</p> */}
-            {/* <p>Volume: {volume}</p> */}
-          </Link>
-        );
-      })}
+      <h1 className="text-3xl text-center font-mono">{title.toString()}</h1>
+      {/* <p>{description?.length}</p> */}
+      {chapters
+        ?.toReversed()
+        .map(({ id: chapterId, title, pages, releaseDate, volume }, index) => {
+          return (
+            <Link href={`/read/${id}/${chapterId}`}>
+              <h2>Chapter {index}</h2>
+            </Link>
+          );
+        })}
     </div>
   );
 };

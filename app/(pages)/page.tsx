@@ -1,6 +1,6 @@
 import { AnimeProvider } from "@/app/lib/AnimeProvider";
-import { CardsContainer } from "./components/CardsContainer";
-import { Card } from "./components/Card";
+import { CardsContainer } from "../components/CardsContainer";
+import { Card } from "../components/Card";
 
 const Home = async () => {
   const { currentPage, hasNextPage, results } =

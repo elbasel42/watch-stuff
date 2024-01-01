@@ -9,7 +9,7 @@ interface Props {
 const ReadPage = async ({ params }: Props) => {
   const { mangaIdChapterId } = params;
   const mangaId = mangaIdChapterId[0];
-  const chapterId = mangaIdChapterId[1] + '/' + mangaIdChapterId[2];
+  const chapterId = mangaIdChapterId[1];
   console.log({mangaId, chapterId})
 
   //   const {} = await MangaProvider.fetchMangaInfo(mangaId);
@@ -20,7 +20,7 @@ const ReadPage = async ({ params }: Props) => {
       {pages.map(({ img, page }) => {
         return (
           <div>
-            <img src={img} alt="" />
+            <img src={img} alt="" className="w-full"/>
           </div>
         );
       })}

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
-import { Nav } from "./components/Nav";
 import { twMerge } from "tailwind-merge";
 import "./globals.css";
+import { Nav } from "../components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 

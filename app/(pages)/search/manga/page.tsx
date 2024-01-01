@@ -1,6 +1,7 @@
 import { Card } from "@/app/components/Card";
 import { CardsContainer } from "@/app/components/CardsContainer";
 import { MangaProvider } from "@/app/lib/MangaProvider";
+import Link from "next/link";
 
 interface Props {
   searchParams: {
@@ -17,7 +18,7 @@ const MangaSearchPage = async ({ searchParams }: Props) => {
 
   return (
     <main>
-      <CardsContainer>
+      <div>
         {resultList.map(
           ({
             id,
@@ -28,18 +29,16 @@ const MangaSearchPage = async ({ searchParams }: Props) => {
             releaseDate,
             status,
           }) => {
-            // console.log({ image });
             return (
-              <Card
-                title={title.toString()}
-                imageUrl={image ?? ""}
-                key={id}
-                url={`/manga/${id}`}
-              />
+              <div className="border border-white rounded-3xl my-4 px-4 py-2">
+                <Link href={`/manga/${id}`}>
+                  <h2>{title.toString()}</h2>
+                </Link>
+              </div>
             );
           }
         )}
-      </CardsContainer>
+      </div>
     </main>
   );
 };
