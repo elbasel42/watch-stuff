@@ -9,7 +9,7 @@ export const Nav = () => {
         <MdHomeFilled className="w-8 h-8 lg:w-14 lg:h-14 text-white" />
       </Link>
       <form
-        action="/search"
+        action="/search/anime"
         className="flex flex-1 gap-2 items-center border border-black"
       >
         <input

@@ -2,13 +2,13 @@ import { Card } from "@/app/components/Card";
 import { CardsContainer } from "@/app/components/CardsContainer";
 import { AnimeProvider } from "@/app/lib/AnimeProvider";
 
-interface SearchParams {
+interface Props {
   searchParams: {
     query: string;
   };
 }
 
-const SearchPage = async ({ searchParams }: SearchParams) => {
+const AnimeSearchPage = async ({ searchParams }: Props) => {
   const { query } = searchParams;
 
   const searchResults = await AnimeProvider.search(query);
@@ -30,4 +30,4 @@ const SearchPage = async ({ searchParams }: SearchParams) => {
   );
 };
 
-export default SearchPage;
+export default AnimeSearchPage;

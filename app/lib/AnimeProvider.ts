@@ -1,3 +1,3 @@
-import { ANIME, MOVIES } from "@consumet/extensions";
+import { ANIME } from "@consumet/extensions";
 
 export const AnimeProvider = new ANIME.Zoro();
