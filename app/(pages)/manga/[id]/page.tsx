@@ -1,3 +1,5 @@
+"use client";
+
 import { MangaProvider } from "@/app/lib/MangaProvider";
 import Link from "next/link";
 
