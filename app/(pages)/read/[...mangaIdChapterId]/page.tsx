@@ -18,7 +18,7 @@ const ReadPage = async ({ params }: Props) => {
   return (
     <main>
       {pages.map(({ img, page }) => {
-        const proxyImg = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${img}`;
+        const proxyImg = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${img}&headers={"referer":"https://mangadex.org","origin":"https://mangadex.org"}`;
         return (
           <div>
             <img src={proxyImg} alt="" className="w-full" />
