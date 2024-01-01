@@ -10,17 +10,18 @@ const ReadPage = async ({ params }: Props) => {
   const { mangaIdChapterId } = params;
   const mangaId = mangaIdChapterId[0];
   const chapterId = mangaIdChapterId[1];
-  console.log({mangaId, chapterId})
+  console.log({ mangaId, chapterId });
 
   //   const {} = await MangaProvider.fetchMangaInfo(mangaId);
   const pages = await MangaProvider.fetchChapterPages(chapterId);
-  console.log({pages})
+  console.log({ pages });
   return (
     <main>
       {pages.map(({ img, page }) => {
+        const proxyImg = `https://m3u8-proxy-cors-hazel.vercel.app/cors?url=${img}`;
         return (
           <div>
-            <img src={img} alt="" className="w-full"/>
+            <img src={proxyImg} alt="" className="w-full" />
           </div>
         );
       })}
