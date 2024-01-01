@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { MdHomeFilled } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 
 export const Nav = () => {
-  const savedSearchTarget = localStorage.getItem("searchTarget") ?? "anime";
+  let savedSearchTarget = "";
+  useEffect(() => {
+    savedSearchTarget = localStorage.getItem("searchTarget") ?? "anime";
+  }, []);
+
   const [searchTarget, setSearchTarget] = useState(savedSearchTarget);
   return (
     <nav className="flex gap-2 items-center mb-8">
