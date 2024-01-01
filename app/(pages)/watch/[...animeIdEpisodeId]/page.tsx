@@ -101,7 +101,7 @@ const WatchEpisodePage = ({
           )}
         </div>
         <button className="flex items-stretch border border-white rounded-tr-3xl rounded-br-3xl">
-          {episodeNum <= (totalEpisodeNum - 1) && (
+          {episodeNum < (totalEpisodeNum - 1) && (
             <Link
               href={`/watch/${animeId}/${episodeNum + 1}`}
               className="flex items-center justify-center px-2 md:px-8 md:py-4"
