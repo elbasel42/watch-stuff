@@ -66,7 +66,7 @@ export const AppPlayer = ({ url, subtitles }: Props) => {
     }, 2000);
 
     //! Set subtitle
-    const savedSubtitleLang = localStorage.getItem("savedSubtitleLang");
+    const savedSubtitleLang = localStorage.getItem("savedSubtitleLang") ?? "English";
     setCurrentSubtitle(savedSubtitleLang ?? "");
     console.log({ savedSubtitleLang });
 
@@ -86,7 +86,7 @@ export const AppPlayer = ({ url, subtitles }: Props) => {
   };
 
   return (
-    <div>
+    <>
       <ReactPlayer
         url={url}
         ref={playerRef}
@@ -115,7 +115,7 @@ export const AppPlayer = ({ url, subtitles }: Props) => {
         }}
         onReady={onPlayerReady}
       />
-      <div className="mt-4 flex gap-4">
+      <div className="absolute bottom-0 pb-8 flex gap-4">
         <select
           onChange={onQualityChange}
           name="quality"
@@ -140,6 +140,6 @@ export const AppPlayer = ({ url, subtitles }: Props) => {
           })}
         </select>
       </div>
-    </div>
+    </>
   );
 };
